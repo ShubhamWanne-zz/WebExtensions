@@ -1,0 +1,1 @@
+document.getElementById("notifyMe").addEventListener('click',function(){	//to send message to browser/background script	var sending=browser.runtime.sendMessage({		action: 'notify'	});})
