@@ -1,23 +1,24 @@
 const CSS = "body { border: 20px solid red; }";
-const TITLE_APPLY= "Apply CSS";
-const TITLE_REMOVE= "Remove CSS";
-const APPLICABLE_PROTOCOLS = ["http:","https:"];
+const TITLE_APPLY = "Apply CSS";
+const TITLE_REMOVE = "Remove CSS";
+const APPLICABLE_PROTOCOLS = ["http:", "https:"];
 
 function toggleCSS(tab){
 
 	function gotTitle(title){
-		if(title == TITLE_APPLY){
+		if(title === TITLE_APPLY){
 		  browser.pageAction.setIcon({tabId: tab.id, path: "icons/on.png"});
 	      browser.pageAction.setTitle({tabId: tab.id, title: TITLE_REMOVE});
 	      browser.tabs.insertCSS({code: CSS});
 		}else{
 			browser.pageAction.setIcon({tabId: tab.id, path: "icons/off.png"});
-	      	browser.pageAction.setTitle({tabId: tab.id, title: TITLE_REMOVE});
+	      	browser.pageAction.setTitle({tabId: tab.id, title: TITLE_APPLY});
 	      	browser.tabs.removeCSS({code: CSS});
 		}
 	}
 
 	var gettingTitle = browser.pageAction.getTitle({tabId: tab.id});
+	console.log("Title "+gettingTitle);
 	gettingTitle.then(gotTitle);
 }
 
@@ -33,10 +34,10 @@ function initializePageAction(tab){
 			tabId: tab.id,
 			path: "icons/off.png"
 		});
-		browser.pageAction.setTitle(){
+		browser.pageAction.setTitle({
 			tabId: tab.id,
 			title: TITLE_APPLY
-		}
+		});
 		browser.pageAction.show(tab.id);
 	}
 }

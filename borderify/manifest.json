@@ -9,6 +9,9 @@
   "background":{
     "scripts": ["borderify.js"]
   },
+  "icons": {
+    "48": "icons/off.png"
+  },
   "page_action": {
     "default_icon": "icons/off.png",
     "browser_style": true
